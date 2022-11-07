@@ -21,7 +21,7 @@ app.use(express.static('public'));
 
 // ** step 2: set express session to use with app **
 app.use(session({                
-    secret: "Our little secret.",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -104,7 +104,7 @@ app.post('/login', (req, res, next) => {
 });
 
 app.get('/logout', (req, res, next) => {
-    req.logout((err) => {
+    req.logout((err) => {  // to logout used req.logout()
         if (err) {
             console.log(err);
         } else {
